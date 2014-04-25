@@ -1,7 +1,7 @@
-hotbot
+hotbot - Work in Progress
 -------
 
-a very simple django app that tracks temperature and humidity data from an Arduino Uno.  it collects temperature and humidity and sends them back to a server API.  its API is exposed by tastypie.
+A very simple django app that tracks temperature and humidity data from an Arduino Uno.  It collects temperature and humidity and sends them back to a server API.  Its API is exposed by tastypie.
 
 
 installation
