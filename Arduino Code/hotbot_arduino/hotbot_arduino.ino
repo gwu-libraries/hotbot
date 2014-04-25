@@ -61,9 +61,20 @@ void httpReq(){
     client.println("Authorization: ApiKey sensor:dcf2cc06582b3d497783bc2348d5ff1fefce0e89");
     client.print("\",\"MAC\": \"");
     client.print(MAC);
-    client.print("\",\"temperatureF\": \"");
+    client.print("\",\"metric\": \"");
+    client.print("temperatureF");
+    client.print("\",\"value\": \"");
     client.print(DHT.temperature*9/5+32);
-    client.print("\",\"humidity\": \"");
+    client.print("\"}");
+    
+    client.println("Content-Type:application/json");
+    client.println("Accept: application/json");
+    client.println("Authorization: ApiKey sensor:dcf2cc06582b3d497783bc2348d5ff1fefce0e89");
+    client.print("\",\"MAC\": \"");
+    client.print(MAC);
+    client.print("\",\"metric\": \"");
+    client.print("humidity");
+    client.print("\",\"value\": \"");
     client.print(DHT.humidity);
     client.print("\"}");
 
