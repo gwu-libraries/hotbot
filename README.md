@@ -42,3 +42,30 @@ Password: <'MYPASS'>
 
 set up a directory to host the deployed code, and a deployment name
 inside there (setting perms as needed):
+```
+$ mkdir -p /hotbot/tag_foo
+$ cd /hotbot/tag_foo
+```
+
+get the code for this application, hotbot, from github, then check
+out the tag to deploy:
+
+```
+$ git clone https://github.com/gwu-libraries/hotbot.git
+$ cd hotbot
+$ git checkout tag_foo
+```
+
+create and activate a virtualenv:
+
+```
+$ virtualenv --no-site-packages ENV
+$ source ENV/bin/activate
+```
+
+install dependencies (note: based on db server choice, use psycopg2
+or MySQL-python as appropriate):
+
+```
+$ pip install -r requirements.txt
+```
