@@ -10,3 +10,4 @@ class Reading(models.Model):
     sensor = models.ForeignKey(Sensor, related_name='sensors')
     metric = models.CharField(max_length=20, db_index=True)
     value = models.FloatField()
+    timestamp = models.DateTimeField(db_index=True)
