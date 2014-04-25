@@ -22,5 +22,5 @@ class ReadingAdmin(admin.ModelAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, UserModelAdmin)
-admin.site.register(Sensor, SensorModelAdmin)
+admin.site.register(Sensor, SensorAdmin)
 admin.site.register(Reading, ReadingAdmin)
