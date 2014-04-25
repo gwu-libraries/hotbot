@@ -1,6 +1,12 @@
+from tastypie.authentication import ApiKeyAuthentication, \
+    MultiAuthentication, Authentication
+from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
-from tastypie.authentication import ApiKeyAuthentication
 from ui.models import Sensor, Reading
 
 
-# Will add resources here
+class ReadingResource(ModelResource):
+    class Meta:
+	authentication = MultiAuthentication(ApiKeyAuthentication(),
+                                             Authentication())
+        authorization = DjangoAuthorization()
