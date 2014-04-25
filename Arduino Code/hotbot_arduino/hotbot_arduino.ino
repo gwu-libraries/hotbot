@@ -1,4 +1,3 @@
-#include <Time.h>
 /*
   
  The sketch creates a connection with server, and 
@@ -12,9 +11,9 @@ dht11 DHT;
 #define DHT11_PIN 4
 #include <SPI.h>
 #include <Ethernet.h>
-#define TIME_MSG_LEN  11
 byte mac[] = {  
   0x90,0xA2,0xDA,0x0D,0xD1,0x4F};//mac address of shield
+const char* MAC ="90A2DA0DD14F";
 IPAddress server(128,164,212,50);//enter server ip
 EthernetClient client;//intitilizes client
 unsigned long lastConnectTime = 0;//time of last connection in ms
@@ -26,7 +25,6 @@ void setup(){
   Ethernet.begin(mac);//start ethernet connection
   Serial.print("My IP:");
   Serial.print(Ethernet.localIP());
-  setTime(9,0,0,25,4,2014);
 }
 void loop()
 {
@@ -51,7 +49,6 @@ void loop()
 }
 void httpReq(){
 
-  time_t time = now();//finds time
   //reads sensor values
   int chk;
   chk = DHT.read(DHT11_PIN);
@@ -61,10 +58,12 @@ void httpReq(){
     //send PUT request:
     client.println("Content-Type:application/json");
     client.println("Accept: application/json");
-    client.print("{\"time\": \"");
-    client.print(time);
-    client.print("\",\"temp\": \"");
+    client.print("\",\"MAC\": \"");
+    client.print(MAC);
+    client.print("\",\"temperatureF\": \"");
     client.print(DHT.temperature*9/5+32);
+    client.print("\",\"humidity\": \"");
+    client.print(DHT.humidity);
     client.print("\"}");
 
     client.println("Connection: close");
