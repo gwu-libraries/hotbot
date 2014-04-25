@@ -14,15 +14,21 @@ dht11 DHT;
 byte mac[] = {  
   0x90,0xA2,0xDA,0x0D,0xD1,0x4F};//mac address of shield
 const char* MAC ="90A2DA0DD14F";
-IPAddress server(128,164,212,50);//enter server ip
+byte server[]={128,164,212,50};//enter server ip
 EthernetClient client;//intitilizes client
 unsigned long lastConnectTime = 0;//time of last connection in ms
 boolean lastConnect = false;//state of connection in last loop
-const unsigned long postingInterval = 60*1000;//delay between updates
+const unsigned long postingInterval = 10*1000;//delay between updates
 void setup(){
   Serial.begin(9600);//start serial port
-  delay(1000);//give ethernet time to boot
-  Ethernet.begin(mac);//start ethernet connection
+  int dbg=Ethernet.begin(mac);
+  delay(2000);//give ethernet time to boot
+  Serial.print(dbg);
+  if(dbg);//start ethernet connection
+  {
+    Serial.println("Begin Failed");
+  }
+  delay(2000);//give ethernet time to boot
   Serial.print("My IP:");
   Serial.print(Ethernet.localIP());
 }
@@ -32,18 +38,19 @@ void loop()
   if(client.available()){
     char c = client.read();
     Serial.print(c);
-  }
+  };
   //if there's no connection, but there was last time through,
   //stop the client
   if(!client.connected() && lastConnect){
     Serial.println();
     Serial.println("disconnectiong.");
     client.stop();
-  }
+  };
   //if not connected, and ten seconds have passed since last connection, 
   //connect again and send
   if(!client.connected() && (millis() - lastConnectTime > postingInterval)){
     httpReq();
+    Serial.println("1");
   }
   lastConnect=client.connected();//updates last connect variable
 }
@@ -53,7 +60,7 @@ void httpReq(){
   int chk;
   chk = DHT.read(DHT11_PIN);
   //if client connected:
-  if(client.connect(server, 80)){
+  if(client.connect(server, 8080)){
     Serial.println("connecting...");
     //send PUT request:
     client.println("Content-Type:application/json");
@@ -66,7 +73,7 @@ void httpReq(){
     client.print("\",\"value\": \"");
     client.print(DHT.temperature*9/5+32);
     client.print("\"}");
-    
+
     client.println("Content-Type:application/json");
     client.println("Accept: application/json");
     client.println("Authorization: ApiKey sensor:dcf2cc06582b3d497783bc2348d5ff1fefce0e89");
@@ -88,4 +95,5 @@ void httpReq(){
     client.stop();
   }
 }
+
 
