@@ -58,6 +58,7 @@ void httpReq(){
     //send PUT request:
     client.println("Content-Type:application/json");
     client.println("Accept: application/json");
+    client.println("Authorization: ApiKey sensor:dcf2cc06582b3d497783bc2348d5ff1fefce0e89");
     client.print("\",\"MAC\": \"");
     client.print(MAC);
     client.print("\",\"temperatureF\": \"");
