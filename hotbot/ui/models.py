@@ -7,8 +7,8 @@ models.signals.post_save.connect(create_api_key, sender=User)
 
 
 class Sensor(models.Model):
-    macaddr = models.CharField(max_length=12, db_index=True)
-    name = models.CharField(max_length=50, db_index=True)
+    macaddr = models.CharField(max_length=12, db_index=True, primary_key=True)
+    name = models.CharField(max_length=50, db_index=True, blank=True)
 
 
 class Reading(models.Model):
