@@ -21,7 +21,7 @@ byte mac[] = {0xAA,0x00,0xBB,0x11,0xCC,0x22};
 const char* MAC ="aa00bb11cc22";
 
 //Server IP address, define below in httpreq 1&2 as 'Host: '
-byte server[]={0.0.0.0};
+byte server[]={0,0,0,0};
 
 //Intitilizes client
 EthernetClient client;
