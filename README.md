@@ -130,4 +130,4 @@ Append your API key after 'sensor:'
 162 client.println("Authorization: ApiKey sensor:");
 ```
 
-Compile and Upload the sketch to your Arduino
+Compile and Upload the sketch to your Arduino, launch the Arduino IDE Serial Monitor to debug your arduino sketch.  Check your apache logs to debug any HTTP errors.
