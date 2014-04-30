@@ -12,9 +12,9 @@ dht11 DHT;
 #include <SPI.h>
 #include <Ethernet.h>
 byte mac[] = {  
-  0x90,0xA2,0xDA,0x0D,0xD1,0x4F};//mac address of shield
-const char* MAC ="90A2DA0DD14F";
-byte server[]={128,164,212,50};//server url
+  0x00,0x00,0x00,0x00,0x00,0x00};//mac address of shield
+const char* MAC ="000000000000";
+byte server[]={0,0,0,0};//server url
 EthernetClient client;//intitilizes client
 unsigned long lastConnectTime = 0;//time of last connection in ms
 boolean lastConnect = false;//state of connection in last loop
@@ -57,10 +57,10 @@ void httpReq(){
     Serial.println("connecting...");
     //send PUT request:
     client.println("POST /api/v1/reading/ HTTP/1.1");
-    client.println("HOST: 128.164.212.50");
+    client.println("HOST: 0.0.0.0");
     client.println("Content-Type: application/json");
     client.println("Accept: application/json ");
-    client.println("Authorization: ApiKey sensor:dcf2cc06582b3d497783bc2348d5ff1fefce0e89");
+    client.println("Authorization: ApiKey sensor:");
     client.println("Connection: close");
     client.print("Content-Length: ");
     client.print("{\"sensor\": \"/api/v1/sensor/");
@@ -74,7 +74,7 @@ void httpReq(){
 
     client.print("Content-Type:application/json");
     client.print("Accept: application/json");
-    client.print("Authorization: ApiKey sensor:dcf2cc06582b3d497783bc2348d5ff1fefce0e89");
+    client.print("Authorization: ApiKey sensor:");
     client.print("\",\"MAC\": \"");
     client.print(MAC);
     client.print("\",\"metric\": \"");
