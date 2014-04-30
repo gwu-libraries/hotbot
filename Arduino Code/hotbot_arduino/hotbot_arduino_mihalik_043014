@@ -99,8 +99,10 @@ void httpReq1(){
     Serial.println("Content-Type: application/json");
     client.println("Accept: application/json");
     Serial.println("Accept: application/json");
-    client.println("Authorization: ApiKey sensor:dcf2cc06582b3d497783bc2348d5ff1fefce0e89");
-    Serial.println("Authorization: ApiKey sensor:dcf2cc06582b3d497783bc2348d5ff1fefce0e89");
+    
+    //Insert your API key
+    client.println("Authorization: ApiKey sensor:");
+    Serial.println("Authorization: ApiKey sensor:");
     client.print("Content-Length: ");
     Serial.print("Content-Length: ");
     client.println(PostDataF.length());
@@ -154,8 +156,10 @@ void httpReq2(){
     Serial.println("Content-Type: application/json");
     client.println("Accept: application/json");
     Serial.println("Accept: application/json");
-    client.println("Authorization: ApiKey sensor:dcf2cc06582b3d497783bc2348d5ff1fefce0e89");
-    Serial.println("Authorization: ApiKey sensor:dcf2cc06582b3d497783bc2348d5ff1fefce0e89");
+    
+    //Insert your API key
+    client.println("Authorization: ApiKey sensor:");
+    Serial.println("Authorization: ApiKey sensor:");
     client.print("Content-Length: ");
     Serial.print("Content-Length: ");
     client.println(PostDataH.length());
