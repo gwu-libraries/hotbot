@@ -112,22 +112,22 @@ Replace '30' to define your posting interval, default 30 seconds
 Replace '0.0.0.0' with the IP address of the server that will receive your HTTP POST commands
 ```
 94 client.println("Host: 0.0.0.0");
-95 client.println("Host: 0.0.0.0");
+95 Serial.println("Host: 0.0.0.0");
 ```
 Append your API key after 'sensor:'
 ```
 104 client.println("Authorization: ApiKey sensor:");
-105 client.println("Authorization: ApiKey sensor:");
+105 Serial.println("Authorization: ApiKey sensor:");
 ```
 Replace '0.0.0.0' with the IP address of the server that will receive your HTTP POST commands
 ```
 151 client.println("Host: 0.0.0.0");
-152 client.println("Host: 0.0.0.0");
+152 Serial.println("Host: 0.0.0.0");
 ```
 Append your API key after 'sensor:'
 ```
 161 client.println("Authorization: ApiKey sensor:");
-162 client.println("Authorization: ApiKey sensor:");
+162 Serial.println("Authorization: ApiKey sensor:");
 ```
 
 Compile and Upload the sketch to your Arduino, launch the Arduino IDE Serial Monitor to debug your arduino sketch.  Check your apache logs to debug any HTTP errors.
